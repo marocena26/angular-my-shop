@@ -1,0 +1,4 @@
+<p *ngIf="product && product.price > 700">
+  <button type="button" (click)="notify.emit()">Notify Me</button>
+  <!-- Cuando queramos disparar el evento personalizado invocaremos el método emit() del objeto EventEmitter. Este método recibe como parámetro aquel dato que queramos hacer llegar al padre.  -->
+</p>

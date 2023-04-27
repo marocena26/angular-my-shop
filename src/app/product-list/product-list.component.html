@@ -1,0 +1,24 @@
+<h2>Products</h2>
+<div *ngFor="let product of products">
+  <!-- Con *ngFor, el <div> se repite para cada producto de la lista. -->
+  <h3>
+    <!-- La declaración {{ product.name }} es un ejemplo de la sintaxis de interpolación de Angular. La interpolación {{ }} te permite renderizar el valor de la propiedad como texto. -->
+    <a
+      [title]="product.name + ' details'"
+      [routerLink]="['/products', product.id]"
+    >
+      <!-- La directiva RouterLink le ayuda a personalizar el elemento de anclaje. En este caso, la ruta, o URL, contiene un segmento fijo, /productos. El segmento final es variable, insertando la propiedad id del producto actual. Por ejemplo, la URL para un producto con un id de 1  -->
+      {{ product.name }}
+    </a>
+    <!-- Para que cada nombre de producto sea un enlace a los detalles del producto, añadimos <a> alrededor de {{ product.name }} más la palabra "detalles"-->
+  </h3>
+
+  <p *ngIf="product.description">Descripción: {{ product.description }}</p>
+  <!-- Utilizando *ngIf Angular solo creará el elemento <p> si el producto actual tiene una descripción -->
+
+  <button type="button" (click)="share()">Share</button>
+  <app-product-alerts [product]="product" (notify)="onNotify()">
+    <!-- [product]="product"  toma un producto de la lista de productos como entrada. Con esa entrada, muestra u oculta el botón Notificarme, basándose en el precio del producto. - va del hijo al padre, pero antes el hijo a cogido la información de su padre  -->
+    <!-- (notify)="onNotify() me ayuda a vincular la notificación - va del hijo al padre  -->
+  </app-product-alerts>
+</div>
