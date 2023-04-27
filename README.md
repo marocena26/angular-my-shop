@@ -1,1 +1,1 @@
-# angular-my-shop
+# angular-my-store
