@@ -9,7 +9,7 @@ import { products } from '../products';
 })
 // ProductListComponent define una propiedad products que contiene datos importados para cada producto de la matriz products en products.ts.
 export class ProductListComponent {
-  products = products;
+  products = products; //se utiliza para inicializar la propiedad products de la clase ProductListComponent con una copia de la lista de productos importados desde el archivo products.ts.
 
   share() {
     window.alert('The product has been shared!');
