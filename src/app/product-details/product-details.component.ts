@@ -10,8 +10,8 @@ import { CartService } from '../cart.service';
   styleUrls: ['./product-details.component.css'],
 })
 export class ProductDetailsComponent implements OnInit {
-  @Input() product!: Product;
-  products = products; //se utiliza para inicializar la propiedad products de la clase ProductListComponent con una copia de la lista de productos importados desde el archivo products.ts.
+  product: Product | undefined;
+  //se utiliza para inicializar la propiedad products de la clase ProductListComponent con una copia de la lista de productos importados desde el archivo products.ts.
   constructor(
     private route: ActivatedRoute,
     private cartService: CartService
@@ -29,6 +29,12 @@ export class ProductDetailsComponent implements OnInit {
 
   //Si intentas implementar la interfaz OnInit, debes proporcionar una definición para el método ngOnInit() en la clase del componente, sino, NO funciona.
   ngOnInit(): void {
+    // First get the product id from the current route.
+  const routeParams = this.route.snapshot.paramMap;
+  const productIdFromRoute = Number(routeParams.get('productId'));
+
+  // Find the product that correspond with the id provided in route.
+  this.product = products.find(product => product.id === productIdFromRoute);
     // Aquí puedes inicializar variables o llamar a funciones que necesiten ser ejecutadas durante el ciclo de vida del componente.
   }
 }
